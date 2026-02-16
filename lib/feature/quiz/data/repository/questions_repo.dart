@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:e_learning/core/networking/api_constant.dart';
 import 'package:e_learning/core/networking/dio_helper.dart';
 import 'package:e_learning/core/utils/typedef.dart';
-import 'package:e_learning/feature/questions/data/models/question_model.dart';
+import 'package:e_learning/feature/quiz/data/models/question_model.dart';
 
 class QuestionsRepository {
   final DioHelper _dioHelper;

@@ -1,6 +1,6 @@
 import 'package:e_learning/core/routing/routes.dart';
 import 'package:e_learning/feature/home/presentation/home_screen.dart';
-import 'package:e_learning/feature/questions/presentation/questions_screen.dart';
+import 'package:e_learning/feature/quiz/presentation/questions_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {

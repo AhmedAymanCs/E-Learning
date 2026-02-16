@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:e_learning/core/networking/api_constant.dart';
 import 'package:e_learning/core/networking/dio_helper.dart';
-import 'package:e_learning/feature/questions/data/repository/questions_repo.dart';
+import 'package:e_learning/feature/quiz/data/repository/questions_repo.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;

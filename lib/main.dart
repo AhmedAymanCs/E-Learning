@@ -2,6 +2,7 @@ import 'package:e_learning/core/contant/string_manager.dart';
 import 'package:e_learning/core/di/service_locator.dart';
 import 'package:e_learning/core/routing/app_router.dart';
 import 'package:e_learning/core/routing/routes.dart';
+import 'package:e_learning/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.homeRoute,
         onGenerateRoute: AppRouter.generateRoute,
+        theme: AppTheme.lightTheme,
       ),
     );
   }
