@@ -59,7 +59,7 @@ class QuestionsPage extends StatelessWidget {
                             curve: Curves.easeInOut,
                           );
                         } else {
-                          Navigator.pushNamed(context, Routes.homeRoute);
+                          Navigator.pushNamed(context, Routes.resultRoute);
                         }
                       },
                       enable: cubit.currentAnswer < 4,

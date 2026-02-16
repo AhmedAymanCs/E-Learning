@@ -40,10 +40,11 @@ class QuizCubit extends Cubit<QuizStates> {
 
     quizSummary.add({
       'question_text': currentQuestionData.question,
-      'all_answers': currentQuestionData.allAnswers,
-      'user_answer_index': currentAnswer,
-      'correct_answer_index': currentQuestionData.correctAnswer,
-      'is_correct': currentAnswer == currentQuestionData.correctAnswer,
+      'user_answer': currentQuestionData.allAnswers[currentAnswer],
+      'correct_answer': currentQuestionData.correctAnswer,
+      'is_correct':
+          currentQuestionData.allAnswers[currentAnswer] ==
+          currentQuestionData.correctAnswer,
     });
   }
 }
