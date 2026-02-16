@@ -1,4 +1,5 @@
 import 'package:e_learning/core/di/service_locator.dart';
+import 'package:e_learning/core/routing/routes.dart';
 import 'package:e_learning/feature/quiz/data/repository/questions_repo.dart';
 import 'package:e_learning/feature/quiz/logic/cubit.dart';
 import 'package:e_learning/feature/quiz/logic/states.dart';
@@ -12,7 +13,7 @@ class QuestionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int currentSelectedAnswer = 10;
+    final PageController pageController = PageController();
     return BlocProvider(
       create: (context) =>
           QuizCubit(getIt<QuestionsRepository>())..loadQuestions(),
@@ -20,24 +21,49 @@ class QuestionsPage extends StatelessWidget {
         body: SafeArea(
           child: BlocBuilder<QuizCubit, QuizStates>(
             builder: (context, state) {
-              if (state is LoadedQuestionsState) {
+              QuizCubit cubit = BlocProvider.of<QuizCubit>(context);
+              if (cubit.questionModel != null) {
                 return Column(
                   children: [
-                    ProgressBar(currentQuestion: 1, totalQuestions: 15),
+                    ProgressBar(
+                      currentQuestion: cubit.currentQuestion,
+                      totalQuestions: cubit.questionModel!.result.length,
+                    ),
                     SizedBox(height: 50.h),
                     Expanded(
                       child: PageView.builder(
+                        controller: pageController,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: 15,
                         itemBuilder: (context, index) => QuizCard(
-                          question: state.questionModel.result[index].question,
-                          answers: state.questionModel.result[index].allAnswers,
-                          currentSelectedAnswer: currentSelectedAnswer,
-                          onAnswerSelected: (index) {},
+                          question: cubit.questionModel!.result[index].question,
+                          answers:
+                              cubit.questionModel!.result[index].allAnswers,
+                          currentSelectedAnswer: cubit.currentAnswer,
+                          onAnswerSelected: (index) {
+                            cubit.changeAnswer(index);
+                          },
                         ),
                       ),
                     ),
-                    NextButton(onPressed: () {}, enable: true),
+                    NextButton(
+                      last:
+                          cubit.currentQuestion ==
+                          cubit.questionModel!.result.length,
+                      onPressed: () {
+                        if (cubit.currentQuestion <
+                            cubit.questionModel!.result.length) {
+                          cubit.nextPage();
+                          pageController.nextPage(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                          );
+                        } else {
+                          Navigator.pushNamed(context, Routes.homeRoute);
+                        }
+                      },
+                      enable: cubit.currentAnswer < 4,
+                    ),
                   ],
                 );
               }

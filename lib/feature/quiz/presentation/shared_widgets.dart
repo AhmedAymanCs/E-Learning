@@ -42,6 +42,7 @@ class ProgressBar extends StatelessWidget {
             value: (currentQuestion + 1) / totalQuestions,
             backgroundColor: ColorManager.gray300,
             color: ColorManager.primaryColor,
+            minHeight: 5,
           ),
         ],
       ),
@@ -147,12 +148,13 @@ class QuizCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        QuestionCard(question: question),
-        SizedBox(height: 30.h),
-        Expanded(
-          child: ListView.builder(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          QuestionCard(question: question),
+          SizedBox(height: 30.h),
+          ListView.builder(
+            shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: answers.length,
             itemBuilder: (context, index) {
@@ -167,16 +169,22 @@ class QuizCard extends StatelessWidget {
               );
             },
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
 
 class NextButton extends StatelessWidget {
   final bool enable;
+  final bool last;
   final VoidCallback? onPressed;
-  const NextButton({super.key, this.onPressed, this.enable = false});
+  const NextButton({
+    super.key,
+    this.onPressed,
+    this.enable = false,
+    required this.last,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +200,7 @@ class NextButton extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           width: double.infinity,
           child: Text(
-            StringManager.next,
+            last ? StringManager.submit : StringManager.next,
             style: TextStyle(color: Colors.white, fontSize: FontSize.s16),
           ),
         ),
