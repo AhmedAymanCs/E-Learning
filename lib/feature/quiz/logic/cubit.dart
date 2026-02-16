@@ -9,6 +9,7 @@ class QuizCubit extends Cubit<QuizStates> {
   final QuestionsRepository _questionsRepository;
 
   QuizCubit get(context) => BlocProvider.of<QuizCubit>(context);
+  List<Map<String, dynamic>> quizSummary = []; // list of quiz summary
   int currentQuestion = 1;
   int currentAnswer =
       10; //initial num for non selected answer, will be changed when user selects answer
@@ -30,6 +31,19 @@ class QuizCubit extends Cubit<QuizStates> {
 
   void changeAnswer(int answer) {
     currentAnswer = answer;
+    saveFullAnswerData();
     emit(AnswerChangedState());
+  }
+
+  void saveFullAnswerData() {
+    var currentQuestionData = questionModel!.result[currentQuestion - 1];
+
+    quizSummary.add({
+      'question_text': currentQuestionData.question,
+      'all_answers': currentQuestionData.allAnswers,
+      'user_answer_index': currentAnswer,
+      'correct_answer_index': currentQuestionData.correctAnswer,
+      'is_correct': currentAnswer == currentQuestionData.correctAnswer,
+    });
   }
 }
