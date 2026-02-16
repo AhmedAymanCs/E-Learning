@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
             SvgPicture.asset(ImageManager.logo),
             SizedBox(height: 10.h),
             const TitleText(),
-            SizedBox(height: 30.h),
+            SizedBox(height: 100.h),
             StartButton(
               onPressed: () =>
                   Navigator.pushNamed(context, Routes.questionsRoute),

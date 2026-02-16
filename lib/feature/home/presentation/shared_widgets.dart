@@ -26,7 +26,7 @@ class StartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -38,7 +38,7 @@ class StartButton extends StatelessWidget {
           width: double.infinity,
           child: Text(
             StringManager.startQuiz,
-            style: TextStyle(color: Colors.white, fontSize: FontSize.s16),
+            style: TextStyle(color: Colors.white, fontSize: FontSize.s18),
           ),
         ),
       ),

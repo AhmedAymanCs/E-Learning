@@ -59,6 +59,7 @@ class QuestionsPage extends StatelessWidget {
                             curve: Curves.easeInOut,
                           );
                         } else {
+                          cubit.saveFullAnswerData();
                           Navigator.pushNamed(
                             context,
                             Routes.resultRoute,
