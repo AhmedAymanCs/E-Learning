@@ -1,5 +1,6 @@
 import 'package:e_learning/core/routing/routes.dart';
 import 'package:e_learning/feature/home/presentation/home_screen.dart';
+import 'package:e_learning/feature/questions/presentation/questions_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -7,6 +8,8 @@ class AppRouter {
     switch (settings.name) {
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomePage());
+      case Routes.questionsRoute:
+        return MaterialPageRoute(builder: (_) => const QuestionsPage());
       default:
         return MaterialPageRoute(
           builder: (context) => Scaffold(
