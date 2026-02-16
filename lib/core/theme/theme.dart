@@ -5,5 +5,6 @@ class AppTheme {
   static final lightTheme = ThemeData(
     primaryColor: ColorManager.primaryColor,
     scaffoldBackgroundColor: ColorManager.scafoldBackgroundColor,
+    appBarTheme: const AppBarTheme(backgroundColor: ColorManager.white),
   );
 }

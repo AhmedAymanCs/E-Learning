@@ -9,13 +9,16 @@ class QuizCubit extends Cubit<QuizStates> {
   final QuestionsRepository _questionsRepository;
 
   QuizCubit get(context) => BlocProvider.of<QuizCubit>(context);
-  List<Map<String, dynamic>> quizSummary = []; // list of quiz summary
+  List<Map<String, dynamic>> quizSummary = [];
+  int score = 0; // list of quiz summary
   int currentQuestion = 1;
   int currentAnswer =
       10; //initial num for non selected answer, will be changed when user selects answer
   QuestionModel? questionModel;
+
   Future<void> loadQuestions() async {
     emit(LoadingQuestionsState());
+    score = 0;
     final result = await _questionsRepository.getQuestions();
     result.fold((l) => emit(ErrorQuestionsState(l)), (data) {
       questionModel = data;
@@ -24,6 +27,7 @@ class QuizCubit extends Cubit<QuizStates> {
   }
 
   void nextPage() {
+    saveFullAnswerData();
     currentQuestion++;
     currentAnswer = 10;
     emit(PageChangedState());
@@ -31,13 +35,15 @@ class QuizCubit extends Cubit<QuizStates> {
 
   void changeAnswer(int answer) {
     currentAnswer = answer;
-    saveFullAnswerData();
     emit(AnswerChangedState());
   }
 
   void saveFullAnswerData() {
     var currentQuestionData = questionModel!.result[currentQuestion - 1];
-
+    if (currentQuestionData.allAnswers[currentAnswer] ==
+        currentQuestionData.correctAnswer) {
+      score++;
+    }
     quizSummary.add({
       'question_text': currentQuestionData.question,
       'user_answer': currentQuestionData.allAnswers[currentAnswer],
