@@ -18,7 +18,7 @@ class ResultPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            CustomCard(text: 'Your Score : $score / ${results.length + 1}'),
+            CustomCard(text: 'Your Score : $score / ${results.length}'),
             SizedBox(height: 20.h),
             ResultList(results: results, score: score),
             ReTakeQuizButton(),
