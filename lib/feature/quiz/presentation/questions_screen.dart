@@ -8,12 +8,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class QuestionsPage extends StatelessWidget {
+class QuestionsPage extends StatefulWidget {
   const QuestionsPage({super.key});
 
   @override
+  State<QuestionsPage> createState() => _QuestionsPageState();
+}
+
+class _QuestionsPageState extends State<QuestionsPage> {
+  late PageController pageController;
+  @override
+  void initState() {
+    pageController = PageController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final PageController pageController = PageController();
     return BlocProvider(
       create: (context) =>
           QuizCubit(getIt<QuestionsRepository>())..loadQuestions(),

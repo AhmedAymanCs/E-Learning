@@ -1,5 +1,3 @@
-import 'package:e_learning/feature/quiz/data/models/question_model.dart';
-
 abstract class QuizStates {}
 
 class InitialQuizState extends QuizStates {}
