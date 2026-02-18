@@ -1,6 +1,6 @@
-import 'package:e_learning/core/contant/color_manager.dart';
-import 'package:e_learning/core/contant/font_manager.dart';
-import 'package:e_learning/core/contant/string_manager.dart';
+import 'package:e_learning/core/constant/color_manager.dart';
+import 'package:e_learning/core/constant/font_manager.dart';
+import 'package:e_learning/core/constant/string_manager.dart';
 import 'package:e_learning/core/routing/routes.dart';
 import 'package:e_learning/feature/result/data/model/result_model.dart';
 import 'package:flutter/material.dart';

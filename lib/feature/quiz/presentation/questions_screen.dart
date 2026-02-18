@@ -57,35 +57,15 @@ class _QuestionsPageState extends State<QuestionsPage> {
                           answers:
                               cubit.questionModel!.result[index].allAnswers,
                           currentSelectedAnswer: cubit.currentAnswer,
-                          onAnswerSelected: (index) {
-                            cubit.changeAnswer(index);
-                          },
+                          onAnswerSelected: (index) =>
+                              cubit.changeAnswer(index),
                         ),
                       ),
                     ),
                     NextButton(
-                      last:
-                          cubit.currentQuestion ==
-                          cubit.questionModel!.result.length,
+                      last: cubit.isLastQuestion,
                       onPressed: () {
-                        if (cubit.currentQuestion <
-                            cubit.questionModel!.result.length) {
-                          cubit.nextPage();
-                          pageController.nextPage(
-                            duration: Duration(milliseconds: 300),
-                            curve: Curves.easeInOut,
-                          );
-                        } else {
-                          cubit.saveFullAnswerData();
-                          Navigator.pushNamed(
-                            context,
-                            Routes.resultRoute,
-                            arguments: {
-                              'quizResults': cubit.quizSummary,
-                              'score': cubit.score,
-                            },
-                          );
-                        }
+                        cubit.submitAnswer(context, pageController);
                       },
                       enable: cubit.currentAnswer < 4,
                     ),

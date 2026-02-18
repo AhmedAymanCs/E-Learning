@@ -1,4 +1,4 @@
-import 'package:e_learning/core/contant/color_manager.dart';
+import 'package:e_learning/core/constant/color_manager.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {

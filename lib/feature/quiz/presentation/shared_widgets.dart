@@ -1,7 +1,7 @@
-import 'package:e_learning/core/contant/color_manager.dart';
-import 'package:e_learning/core/contant/font_manager.dart';
-import 'package:e_learning/core/contant/string_manager.dart';
-import 'package:e_learning/core/widgets/cutom_card.dart';
+import 'package:e_learning/core/constant/color_manager.dart';
+import 'package:e_learning/core/constant/font_manager.dart';
+import 'package:e_learning/core/constant/string_manager.dart';
+import 'package:e_learning/core/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -54,24 +54,21 @@ class ProgressBar extends StatelessWidget {
 class AnswerCard extends StatelessWidget {
   final String text;
   final VoidCallback? onTap;
-  final int cardIndex;
-  final int currentIndex;
+  final bool isSelected;
   const AnswerCard({
     super.key,
     this.onTap,
-    required this.cardIndex,
-    required this.currentIndex,
     required this.text,
+    required this.isSelected,
   });
 
   @override
   Widget build(BuildContext context) {
-    bool isSelected = currentIndex == cardIndex;
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 10.w),
+        margin: EdgeInsets.symmetric(vertical: 15.h, horizontal: 20.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: ColorManager.white,
@@ -127,21 +124,13 @@ class QuizCard extends StatelessWidget {
         children: [
           CustomCard(text: question),
           SizedBox(height: 30.h),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: answers.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
-                child: AnswerCard(
-                  cardIndex: index,
-                  currentIndex: currentSelectedAnswer,
-                  text: answers[index],
-                  onTap: () => onAnswerSelected(index),
-                ),
-              );
-            },
+          ...List.generate(
+            answers.length,
+            (index) => AnswerCard(
+              isSelected: currentSelectedAnswer == index,
+              text: answers[index],
+              onTap: () => onAnswerSelected(index),
+            ),
           ),
         ],
       ),

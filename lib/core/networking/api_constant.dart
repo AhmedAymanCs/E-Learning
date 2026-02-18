@@ -12,5 +12,6 @@ class ApiConstant {
     "Accept": "application/json",
     "User-Agent": "Mozilla/5.0",
   };
-  static const int timeOut = 20000;
+  static const int receiveTimeout = 30;
+  static const int connectTimeout = 10;
 }

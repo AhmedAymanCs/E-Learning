@@ -1,7 +1,7 @@
-import 'package:e_learning/core/contant/color_manager.dart';
-import 'package:e_learning/core/contant/font_manager.dart';
-import 'package:e_learning/core/contant/string_manager.dart';
-import 'package:e_learning/core/widgets/cutom_card.dart';
+import 'package:e_learning/core/constant/color_manager.dart';
+import 'package:e_learning/core/constant/font_manager.dart';
+import 'package:e_learning/core/constant/string_manager.dart';
+import 'package:e_learning/core/widgets/custom_card.dart';
 import 'package:e_learning/feature/result/data/model/result_model.dart';
 import 'package:e_learning/feature/result/presentation/shared_widgets.dart';
 import 'package:flutter/material.dart';

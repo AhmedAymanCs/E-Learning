@@ -8,7 +8,7 @@ class QuestionsRepository {
   final DioHelper _dioHelper;
 
   QuestionsRepository(this._dioHelper);
-  Result getQuestions() async {
+  Result<QuestionModel> getQuestions() async {
     try {
       final response = await _dioHelper.getData(
         endPoint: ApiConstant.endPoint,

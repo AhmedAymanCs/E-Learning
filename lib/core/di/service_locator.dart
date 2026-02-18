@@ -11,8 +11,8 @@ void setupDioLocator() {
     () => Dio(
       BaseOptions(
         baseUrl: ApiConstant.baseUrl,
-        receiveTimeout: const Duration(milliseconds: ApiConstant.timeOut),
-        connectTimeout: const Duration(milliseconds: ApiConstant.timeOut),
+        receiveTimeout: const Duration(seconds: ApiConstant.receiveTimeout),
+        connectTimeout: const Duration(seconds: ApiConstant.connectTimeout),
         headers: ApiConstant.headers,
       ),
     ),

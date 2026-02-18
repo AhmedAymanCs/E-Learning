@@ -1,4 +1,4 @@
-import 'package:e_learning/core/contant/string_manager.dart';
+import 'package:e_learning/core/constant/string_manager.dart';
 import 'package:e_learning/core/di/service_locator.dart';
 import 'package:e_learning/core/routing/app_router.dart';
 import 'package:e_learning/core/routing/routes.dart';
@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
   setupDioLocator();
   runApp(const MyApp());
 }

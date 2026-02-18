@@ -1,6 +1,8 @@
+import 'package:e_learning/core/routing/routes.dart';
 import 'package:e_learning/feature/quiz/data/models/question_model.dart';
 import 'package:e_learning/feature/quiz/data/repository/questions_repo.dart';
 import 'package:e_learning/feature/quiz/logic/states.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class QuizCubit extends Cubit<QuizStates> {
@@ -15,6 +17,7 @@ class QuizCubit extends Cubit<QuizStates> {
   int currentAnswer =
       10; //initial num for non selected answer, will be changed when user selects answer
   QuestionModel? questionModel;
+  bool get isLastQuestion => currentQuestion == questionModel!.result.length;
 
   Future<void> loadQuestions() async {
     emit(LoadingQuestionsState());
@@ -52,5 +55,22 @@ class QuizCubit extends Cubit<QuizStates> {
           currentQuestionData.allAnswers[currentAnswer] ==
           currentQuestionData.correctAnswer,
     });
+  }
+
+  void submitAnswer(context, pageController) {
+    if (currentQuestion < questionModel!.result.length) {
+      nextPage();
+      pageController.nextPage(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    } else {
+      saveFullAnswerData();
+      Navigator.pushNamed(
+        context,
+        Routes.resultRoute,
+        arguments: {'quizResults': quizSummary, 'score': score},
+      );
+    }
   }
 }

@@ -1,5 +1,5 @@
-import 'package:e_learning/core/contant/color_manager.dart';
-import 'package:e_learning/core/contant/font_manager.dart';
+import 'package:e_learning/core/constant/color_manager.dart';
+import 'package:e_learning/core/constant/font_manager.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

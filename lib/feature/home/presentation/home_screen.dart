@@ -1,4 +1,4 @@
-import 'package:e_learning/core/contant/image_manager.dart';
+import 'package:e_learning/core/constant/image_manager.dart';
 import 'package:e_learning/core/routing/routes.dart';
 import 'package:e_learning/feature/home/presentation/shared_widgets.dart';
 import 'package:flutter/material.dart';
