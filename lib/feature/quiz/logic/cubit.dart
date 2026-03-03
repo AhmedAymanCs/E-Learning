@@ -10,7 +10,7 @@ class QuizCubit extends Cubit<QuizStates> {
 
   final QuestionsRepository _questionsRepository;
 
-  QuizCubit get(context) => BlocProvider.of<QuizCubit>(context);
+  QuizCubit get(BuildContext context) => BlocProvider.of<QuizCubit>(context);
   List<Map<String, dynamic>> quizSummary = [];
   int score = 0; // list of quiz summary
   int currentQuestion = 1;
@@ -57,7 +57,7 @@ class QuizCubit extends Cubit<QuizStates> {
     });
   }
 
-  void submitAnswer(context, pageController) {
+  void submitAnswer(BuildContext context, pageController) {
     if (currentQuestion < questionModel!.result.length) {
       nextPage();
       pageController.nextPage(

@@ -13,7 +13,6 @@ class ResultList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(results.length);
     return Expanded(
       child: ListView.builder(
         itemCount: results.length,
